@@ -1,0 +1,50 @@
+=== Reaching Definitions ===
+  B2: temp@B1
+  B3: res@B2, temp@B1
+  B4: res@B2, temp@B1
+  B7: x@B6
+  B8: x@B6, y@B7
+  B9: x@B6, y@B7
+  B10: x@B6, y@B7, z@B9
+  B11: x@B6, y@B7, z@B9
+  B12: x@B6, y@B7, z@B9
+  B13: x@B6, y@B7, z@B11, z@B12
+  B14: x@B6, y@B7, z@B11, z@B12
+  B15: x@B6, y@B7, z@B11, z@B12
+  B18: a@B17
+  B19: a@B17, b@B18
+  B20: a@B17, b@B18
+  B21: a@B17, b@B18, c@B20
+  B22: a@B17, b@B18, c@B20
+  B23: a@B17, b@B18, c@B20, c@B22
+  B24: a@B17, b@B18, c@B20, c@B22
+  B25: a@B17, b@B18, c@B20, c@B22
+
+=== Live Variable Analysis ===
+  B0 live-in: ['a', 'b']
+  B1 live-in: ['a', 'b']
+  B2 live-in: ['a', 'b']
+  B3 live-in: ['res']
+  B7 live-in: ['x']
+  B8 live-in: ['x', 'y']
+  B9 live-in: ['x', 'y']
+  B10 live-in: ['z']
+  B11 live-in: ['z']
+  B12 live-in: ['z']
+  B13 live-in: ['z']
+  B14 live-in: ['z']
+  B16 live-in: ['add']
+  B17 live-in: ['add']
+  B18 live-in: ['a', 'add']
+  B19 live-in: ['a', 'add', 'b']
+  B20 live-in: ['a', 'add', 'b']
+  B21 live-in: ['c']
+  B22 live-in: ['c']
+  B23 live-in: ['c']
+  B24 live-in: ['c']
+
+=== Warnings ===
+[UNINIT] 'a' used in B2
+[UNINIT] 'b' used in B2
+[UNINIT] 'add' used in B20
+[DEAD]   dead assignment to 'temp' in B1
